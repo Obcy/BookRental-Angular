@@ -1,0 +1,36 @@
+﻿<div class="container">
+    <h5 class="text-center mt-3">USERS</h5>
+    <div class="d-flex my-2">
+        <a href="#" routerLink="/user/add" class="btn btn-outline-success ms-auto">Create New USer</a>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-bordered p-0 m-0">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Description</th>
+                    <th scope="col">Version</th>
+                    <th scope="col">Edition</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr scope="row" *ngFor="let user of users">
+                    <td>{{ user.id }}</td>
+                    <td>{{ user.emailAddress }}</td>
+                    <td>{{ user.firstName}}</td>
+                    <td>{{ user.lastName }}</td>
+                    <td><span *ngFoor="let role of user.roles">{{role.name}}</span></td>
+                    <!-- <td><a href="#" [routerLink]="['/user/', user.id, 'view']" class="btn btn-info m-1">View</a> <a href="#"
+                            [routerLink]="['/products/', user.id, 'edit']" class="btn btn-primary m-1">Edit</a>
+                        <button type="button" (click)="deleteUser(user.id)" class="btn btn-danger m-1">Delete</button></td> -->
+                </tr>
+                <tr scope="row" *ngIf="users.length === 0">
+                    <td colspan="6" class="text-center">No record found</td>
+                </tr>
+            </tbody>
+        </table>
+        <mat-paginator [pageSizeOptions]="[5, 10, 25, 100]" [pageSize]="5" [length]="totalElements" (page)="nextPage($event)"> </mat-paginator>
+    </div>
+</div>
